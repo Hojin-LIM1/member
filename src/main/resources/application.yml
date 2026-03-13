@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: local
+  datasource: driver-class-name=com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate: dialect=org.hibernate.dialect.MySQLDialect
+  cloud:
+    aws:
+      region:
+        static: ap-northeast-2 #서울
+  servlet:
+    multipart: max-file-size=10MB # 파일 업로드 크기 제한
+
+info:
+  team-name: ${APP_MESSAGE} # Parameter Store의 /camp-health-app/prod/APP_MESSAGE 값을 가져옴
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  info:
+    env:
+      enabled: true
+
+server:
+  port: 8080
+
+
